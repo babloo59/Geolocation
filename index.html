@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geolocation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        #container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        a img {
+            width: 50px;
+            cursor: pointer;
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s, box-shadow 0.5s;
+        }
+
+        a:hover img {
+            transform: scale(1.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="container" onclick="getLocation()">
+        <a><img src="my_location2.jpg" alt="My Location"></a>
+    </div>
+
+    <h1 id="coords"></h1>
+
+    <script>
+        var x = document.getElementById('coords');
+
+        function getLocation(){
+            if(navigator.geolocation){
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                x.innerHTML = "Geolocation is not supported";
+            }
+
+            function showPosition(position){
+                x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+            }
+        }
+    </script>
+</body>
+</html>
